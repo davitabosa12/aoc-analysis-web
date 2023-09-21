@@ -1,0 +1,6 @@
+Flask
+black
+gunicorn
+sqlalchemy
+pandas
+marshmallow
