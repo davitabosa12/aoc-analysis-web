@@ -16,3 +16,7 @@ class ProjectDetail extends ProjectSummary {
         this.aocReports = data.aocReports;
     }
 }
+
+export {
+    ProjectDetail, ProjectSummary
+}
