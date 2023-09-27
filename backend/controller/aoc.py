@@ -5,6 +5,7 @@ from flask import request, jsonify
 
 bp_aoc = Blueprint("aoc", __name__)
 
+@bp_aoc.route("/")
 def get_all_aocs():
     aocs = get_aocs()
     return jsonify(aocs)

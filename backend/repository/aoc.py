@@ -9,4 +9,5 @@ from typing import List
 
 def get_aocs() -> List[str]:
     with Session(db_engine) as session:
-        return session.query(AoCReport.aoc).distinct().all()
+        # session.query returns a list of tuples
+        return [result[0] for result in session.query(AoCReport.aoc).distinct().all()]
