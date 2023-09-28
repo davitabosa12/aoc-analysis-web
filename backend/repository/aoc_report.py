@@ -45,9 +45,10 @@ def search(project_id: int | List[int] = None, aoc: str | List[str] = None):
     if aoc is None:
         aoc = []
     list_aocs = aoc if isinstance(aoc, list) else [aoc]
-    and_clauses.append(
-        or_(false, *[AoCReport.aoc.like(aoc_elem) for aoc_elem in list_aocs])
-    )
+    if aoc:
+        and_clauses.append(
+            or_(false, *[AoCReport.aoc.like(aoc_elem) for aoc_elem in list_aocs])
+        )
     stmt = select(AoCReport).where(and_(true, *and_clauses))
     with Session(db_engine) as session:
         reports = []

@@ -35,9 +35,12 @@ export default class AoCApiService {
     }
 
     async search(projectId, aoc) {
-        const params = {
-            "project_id": projectId,
-            "aoc": aoc
+        const params = {}
+        if (projectId !== undefined && projectId !== null) {
+            params["project_id"] = projectId;
+        }
+        if (aoc !== undefined && aoc !== null) {
+            params["aoc"] = aoc;
         }
         const response = await fetch(`${this.url}/api/aoc-reports/search?` + new URLSearchParams(params));
         if (response.ok) {
