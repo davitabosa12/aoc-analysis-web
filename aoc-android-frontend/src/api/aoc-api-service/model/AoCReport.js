@@ -20,6 +20,34 @@ class AoCReportDetail extends AoCReportSummary {
     }
 }
 
+class AoCStatistics extends Base {
+    constructor(data) {
+        super(data);
+        /**
+         * @type {number}
+         */
+        this.count = data.count;
+        /**
+        * @type {Map<string, number>}
+        */
+        this.class = data.class;
+        /**
+         * @type {Map<string, number>}
+         */
+        this.aoc = data.aoc;
+    }
+}
+
+class ProjectAoCStatistics extends AoCStatistics {
+    constructor(data) {
+        super(data);
+        /**
+         * @type {Map<string, AoCStatistics>}
+         */
+        this.project = data.project
+    }
+}
+
 export {
-    AoCReportSummary, AoCReportDetail
+    AoCReportSummary, AoCReportDetail, AoCStatistics, ProjectAoCStatistics
 }

@@ -49,4 +49,19 @@ export default class AoCApiService {
         }
         throw Error("Could not fetch aoc reports.");
     }
+
+    async searchStatistics(projectId, aoc) {
+        const params = {}
+        if (projectId !== undefined && projectId !== null) {
+            params["project_id"] = projectId;
+        }
+        if (aoc !== undefined && aoc !== null) {
+            params["aoc"] = aoc;
+        }
+        const response = await fetch(`${this.url}/api/aoc-reports/search/statistics?` + new URLSearchParams(params));
+        if (response.ok) {
+            const listOfReports = JSON.parse(await response.text());
+            return listOfReports.map(data => new AoCReportSummary(data));
+        }
+    }
 }

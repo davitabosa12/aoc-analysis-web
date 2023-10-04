@@ -5,7 +5,7 @@ import { calculateStatistics } from "../lib/aocStatistics";
 export default function FormSearch({ onReport }) {
     let [aocReports, setAocReports] = useState([]);
     let [aocs, setAocs] = useState([]);
-    // @type {sas}
+    // @type [ProjectSummary[], ProjectSummary[]]
     let [projects, setProjects] = useState([]);
     let projectSelectRef = useRef();
     let aocSelectRef = useRef();
@@ -18,9 +18,9 @@ export default function FormSearch({ onReport }) {
             setProjects(listOfProjects)
         });
     }, []);
-    const triggerOnReport = (statistics) => {
+    const triggerOnReport = (selectedAoCs, selectedProject) => {
         if (typeof onReport == "function") {
-            onReport(statistics);
+            onReport(selectedAoCs, selectedProject);
         }
     }
     return (
@@ -42,10 +42,10 @@ export default function FormSearch({ onReport }) {
                     if (currentAoc.startsWith("%")) {
                         currentAoc = undefined;
                     }
+                    triggerOnReport(currentAoc, currentProject);
                     console.log(`Fetch project with id ${currentProject} and pick aoc ${currentAoc}.`);
                     api.search(currentProject, currentAoc).then(listOfReports => {
                         setAocReports(listOfReports);
-                        triggerOnReport(calculateStatistics(listOfReports));
                     });
                 }} />
             </form>
