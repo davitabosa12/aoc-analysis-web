@@ -1,4 +1,4 @@
-import { AoCReportSummary } from "./model/AoCReport";
+import { AoCReportSummary, ProjectAoCStatistics } from "./model/AoCReport";
 import { ProjectSummary } from "./model/Project";
 export default class AoCApiService {
     constructor(url) {
@@ -61,7 +61,7 @@ export default class AoCApiService {
         const response = await fetch(`${this.url}/api/aoc-reports/search/statistics?` + new URLSearchParams(params));
         if (response.ok) {
             const listOfReports = JSON.parse(await response.text());
-            return listOfReports.map(data => new AoCReportSummary(data));
+            return new ProjectAoCStatistics(listOfReports);
         }
     }
 }

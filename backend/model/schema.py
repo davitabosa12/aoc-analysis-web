@@ -10,6 +10,25 @@ class AoCReportSummarySchema(Schema):
     path = fields.String()
 
 
+class AOSPAoCReportSummarySchema(Schema):
+    id = fields.Integer()
+    line = fields.Integer()
+    snippet = fields.String()
+    class_ = fields.String(data_key="class")
+    aoc = fields.String()
+    path = fields.String()
+    loc = fields.Integer()
+    commit = fields.String()
+
+
+class ProjectSummarySchema(Schema):
+    id = fields.Integer()
+    name = fields.String()
+    description = fields.String()
+    package = fields.String()
+    category = fields.String()
+
+
 class ProjectSummarySchema(Schema):
     id = fields.Integer()
     name = fields.String()

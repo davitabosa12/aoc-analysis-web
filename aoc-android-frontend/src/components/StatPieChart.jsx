@@ -1,5 +1,6 @@
 import Plot from "react-plotly.js"
 function StatPieChart({ data, title }) {
+    //https://www.imdb.com/title/tt1895587/
     let values = [];
     let labels = [];
 
